@@ -1,0 +1,32 @@
+# Xcode
+.DS_Store
+build/
+DerivedData/
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+
+# User-specific Xcode settings
+xcuserdata/
+
+# Swift Package Manager
+.build/
+Package.resolved
+
+# CocoaPods (eğer kullanırsan)
+Pods/
+Podfile.lock
+
+# Carthage (eğer kullanırsan)
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Archives
+*.xcarchive
+
+# Simulator logs
+*.simulated
