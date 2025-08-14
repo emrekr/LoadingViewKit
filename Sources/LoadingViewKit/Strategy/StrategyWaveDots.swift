@@ -28,6 +28,7 @@ public final class StrategyWaveDots: Strategy {
     /// User-facing style for the wave dots animation.
     public struct Style {
         public var color: UIColor = .label             // Dot color
+        public var secondaryColor: UIColor = .label    // Secondary color
         public var size: CGFloat = 8                   // Diameter of each dot
         public var count: Int = 5                       // Number of dots
         public var spacing: CGFloat = 8                 // Horizontal spacing between dots
@@ -38,6 +39,7 @@ public final class StrategyWaveDots: Strategy {
     // MARK: - Internal Config (mirrored from Style)
 
     private var dotColor: UIColor = .label
+    private var secondaryDotColor: UIColor = .label
     private var dotSize: CGFloat = 8
     private var dotCount: Int = 5
     private var dotSpacing: CGFloat = 8
@@ -59,6 +61,7 @@ public final class StrategyWaveDots: Strategy {
 
     public func apply(style: Style) {
         dotColor = style.color
+        secondaryDotColor = style.secondaryColor
         dotSize = style.size
         dotCount = style.count
         dotSpacing = style.spacing
@@ -124,7 +127,21 @@ public final class StrategyWaveDots: Strategy {
         anim.autoreverses = true
         anim.repeatCount = .infinity
         anim.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-        return anim
+        
+        let color = CABasicAnimation(keyPath: "backgroundColor")
+        color.fromValue = dotColor.cgColor
+        color.toValue = secondaryDotColor.cgColor
+        color.duration = duration
+        color.autoreverses = true
+        color.repeatCount = .infinity
+        color.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        
+        let group = CAAnimationGroup()
+        group.animations = [anim, color]
+        group.duration = duration
+        group.repeatCount = .infinity
+        group.autoreverses = true
+        return group
     }
 }
 

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         
         let dots = LoadingView<DotsMode>()
         dots.style.color = .systemGreen
-        dots.style.count = 5
+        dots.style.count = 4
         dots.style.size = 10
         dots.startAnimating()
 
@@ -35,7 +35,8 @@ class ViewController: UIViewController {
             
         //Wave
         let waveView = LoadingView<WaveDotsMode>()
-        waveView.style.color = .systemBlue
+        waveView.style.color = .black
+        waveView.style.secondaryColor = .red
         waveView.style.count = 3
         waveView.style.amplitude = 10
         waveView.startAnimating()

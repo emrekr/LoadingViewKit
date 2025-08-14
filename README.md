@@ -17,7 +17,7 @@ Built with a clean, extensible **Strategy + Mode** architecture so you can easil
   - **Dots** – Pulsating dots
   - **Ring** – Spinning circular arc
   - **Shimmer** – Animated shimmering bar
-  - **Wave** – Dots moving up/down in a wave pattern
+  - **Wave** – Dots moving up/down in a wave pattern with optional color transition
 - Fully customizable styles for each animation type
 - Auto Layout–friendly (`intrinsicContentSize` support)
 - Easily extendable with your own modes and strategies
@@ -55,65 +55,37 @@ import LoadingViewKit
 ### 2. Create a loading view with a specific mode
 
 ```swift
-let dotsLoading = LoadingView<DotsMode>()
-dotsLoading.style = .init(
-    color: .systemBlue,
-    size: 10,
-    count: 4,
-    spacing: 8,
-    duration: 0.5
-)
-dotsLoading.startAnimating()
-```
+import LoadingViewKit
 
----
+// Dots
+let dots = LoadingView<DotsMode>()
+dots.style.color = .systemGreen
+dots.style.count = 4
+dots.style.size = 10
+dots.startAnimating()
 
-### Example: Ring
+// Ring
+let ring = LoadingView<RingMode>()
+ring.style.strokeColor = .label
+ring.style.lineWidth = 4
+ring.style.gapRatio = 0.2
+ring.startAnimating()
 
-```swift
-let ringLoading = LoadingView<RingMode>()
-ringLoading.style = .init(
-    strokeColor: .systemGreen,
-    lineWidth: 4,
-    gapRatio: 0.3,
-    rotationDuration: 1.0
-)
-ringLoading.startAnimating()
-```
+// Shimmer
+let shimmer = LoadingView<ShimmerMode>()
+shimmer.style.baseColor = UIColor.label.withAlphaComponent(0.12)
+shimmer.style.highlightColor = UIColor.label.withAlphaComponent(0.28)
+shimmer.style.widthRatio = 0.22
+shimmer.startAnimating()
 
----
+// Wave (sequential up/down with optional color transition)
+let waveView = LoadingView<WaveDotsMode>()
+waveView.style.color = .black
+waveView.style.secondaryColor = .red
+waveView.style.count = 3
+waveView.style.amplitude = 10
+waveView.startAnimating()
 
-### Example: Shimmer
-
-```swift
-let shimmerLoading = LoadingView<ShimmerMode>()
-shimmerLoading.style = .init(
-    baseColor: UIColor.label.withAlphaComponent(0.1),
-    highlightColor: UIColor.label.withAlphaComponent(0.3),
-    cornerRadius: 8,
-    preferredSize: CGSize(width: 140, height: 14),
-    shimmerWidthRatio: 0.25,
-    shimmerDuration: 1.5
-)
-shimmerLoading.startAnimating()
-```
-
----
-
-### Example: Wave
-
-```swift
-let waveLoading = LoadingView<WaveMode>()
-waveLoading.style = .init(
-    color: .systemPurple,
-    size: 8,
-    count: 5,
-    spacing: 6,
-    duration: 0.5,
-    amplitude: 6
-)
-waveLoading.startAnimating()
-```
 
 ---
 
