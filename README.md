@@ -85,7 +85,7 @@ waveView.style.secondaryColor = .red
 waveView.style.count = 3
 waveView.style.amplitude = 10
 waveView.startAnimating()
-
+```
 
 ---
 
